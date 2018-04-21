@@ -1,0 +1,22 @@
+{
+  "name": "the-art-of-sound",
+  "version": "1.0.0",
+  "description": "use sound for canvas",
+  "main": "index.js",
+  "scripts": {
+    "test": "no"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarmsaad/the-art-of-sound.git"
+  },
+  "author": "us",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sarmsaad/the-art-of-sound/issues"
+  },
+  "homepage": "https://github.com/sarmsaad/the-art-of-sound#readme",
+  "dependencies": {
+    "audio-loader": "^1.0.3"
+  }
+}
