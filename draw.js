@@ -1,7 +1,8 @@
-var colorRed = "#cb3594";
+var colorRed = "#ff3232";
 var colorGreen = "#659b41";
 var colorBlue = "#ffcf33";
 var curColor = colorRed;
+var curSize = 50;
 var clickX = new Array();
 var clickY = new Array();
 var clickColor = new Array();
@@ -15,8 +16,8 @@ var mediumImageWidth = 20;
 var mediumImageHeight = 20;
 var drawingAreaX = 111;
 var drawingAreaY = 11;
-var drawingAreaWidth = 267;
-var drawingAreaHeight = 400;
+var drawingAreaWidth = 600;
+var drawingAreaHeight = 500;
 var canvasWidth = 500;
 var canvasHeight = 250;
 var sizeHotspotWidthObject = {
@@ -70,9 +71,6 @@ function prepareCanvas()
             }else if(mouseY > mediumStartY + mediumImageHeight * 2 && mouseY < mediumStartY + mediumImageHeight * 3){
                     curColor = colorBlue;
             }
-        }
-        else if(mouseY > drawingAreaY && mouseY < drawingAreaY + drawingAreaHeight)
-        {
         }
 
         paint = true;
@@ -143,5 +141,5 @@ function redraw(){
     context.restore();
 
     // Draw the outline image
-    context.drawImage(outlineImage, drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
+    context.drawImage(drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
 }
