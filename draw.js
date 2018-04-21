@@ -19,6 +19,9 @@ var drawingAreaWidth = 267;
 var drawingAreaHeight = 400;
 var canvasWidth = 500;
 var canvasHeight = 250;
+var sizeHotspotWidthObject = {
+    normal: 18
+}
 
 /**
  * Calls the redraw function after all neccessary resources are loaded.
@@ -105,11 +108,6 @@ function addClick(x, y, dragging)
     clickX.push(x);
     clickY.push(y);
     clickDrag.push(dragging);
-    if(curTool == "eraser"){
-        clickColor.push("white");
-    }else{
-        clickColor.push(curColor);
-    }
     clickColor.push(curColor);
     clickSize.push(curSize);
     clickDrag.push(dragging);
@@ -140,23 +138,9 @@ function redraw(){
         context.lineJoin = "round";
         context.lineWidth = radius;
         context.stroke();
-        if(curTool == "eraser") {
-            context.globalAlpha = 1;
-        }
-        else {
-            context.globalAlpha = 0.4;
-            context.drawImage(crayonTextureImage, 0,0, canvasWidth, canvasHeight)
-        }
     }
     //context.globalCompositeOperation = "source-over";// To erase instead of draw over with white
     context.restore();
-
-    // Overlay a crayon texture (if the current tool is crayon)
-    if(curTool == "crayon"){
-        context.globalAlpha = 0.4; // No IE support
-        context.drawImage(crayonTextureImage, 0, 0, canvasWidth, canvasHeight);
-    }
-    context.globalAlpha = 1; // No IE support
 
     // Draw the outline image
     context.drawImage(outlineImage, drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
