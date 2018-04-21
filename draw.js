@@ -1,7 +1,6 @@
 var colorRed = "#cb3594";
 var colorGreen = "#659b41";
 var colorBlue = "#ffcf33";
-var colorBrown = "#986928";
 var curColor = colorRed;
 var clickX = new Array();
 var clickY = new Array();
@@ -46,63 +45,11 @@ function prepareCanvas()
     // ----------------
     $('#canvas').mousedown(function(e)
     {
-        // Mouse down location
         var mouseX = e.pageX - this.offsetLeft;
         var mouseY = e.pageY - this.offsetTop;
 
-        if(mouseX < drawingAreaX) // Left of the drawing area
-        {
-            if(mouseX > mediumStartX)
-            {
-                if(mouseY > mediumStartY && mouseY < mediumStartY + mediumImageHeight){
-                    curColor = colorPurple;
-                }else if(mouseY > mediumStartY + mediumImageHeight && mouseY < mediumStartY + mediumImageHeight * 2){
-                    curColor = colorGreen;
-                }else if(mouseY > mediumStartY + mediumImageHeight * 2 && mouseY < mediumStartY + mediumImageHeight * 3){
-                    curColor = colorYellow;
-                }else if(mouseY > mediumStartY + mediumImageHeight * 3 && mouseY < mediumStartY + mediumImageHeight * 4){
-                    curColor = colorBrown;
-                }
-            }
-        }
-        else if(mouseX > drawingAreaX + drawingAreaWidth) // Right of the drawing area
-        {
-            if(mouseY > toolHotspotStartY)
-            {
-                if(mouseY > sizeHotspotStartY)
-                {
-                    var sizeHotspotStartX = drawingAreaX + drawingAreaWidth;
-                    if(mouseY < sizeHotspotStartY + sizeHotspotHeight && mouseX > sizeHotspotStartX)
-                    {
-                        if(mouseX < sizeHotspotStartX + sizeHotspotWidthObject.huge){
-                            curSize = "huge";
-                        }else if(mouseX < sizeHotspotStartX + sizeHotspotWidthObject.large + sizeHotspotWidthObject.huge){
-                            curSize = "large";
-                        }else if(mouseX < sizeHotspotStartX + sizeHotspotWidthObject.normal + sizeHotspotWidthObject.large + sizeHotspotWidthObject.huge){
-                            curSize = "normal";
-                        }else if(mouseX < sizeHotspotStartX + sizeHotspotWidthObject.small + sizeHotspotWidthObject.normal + sizeHotspotWidthObject.large + sizeHotspotWidthObject.huge){
-                            curSize = "small";
-                        }
-                    }
-                }
-                else
-                {
-                    if(mouseY < toolHotspotStartY + toolHotspotHeight){
-                        curTool = "crayon";
-                    }else if(mouseY < toolHotspotStartY + toolHotspotHeight * 2){
-                        curTool = "marker";
-                    }else if(mouseY < toolHotspotStartY + toolHotspotHeight * 3){
-                        curTool = "eraser";
-                    }
-                }
-            }
-        }
-        else if(mouseY > drawingAreaY && mouseY < drawingAreaY + drawingAreaHeight)
-        {
-            // Mouse click location on drawing area
-        }
         paint = true;
-        addClick(mouseX, mouseY, false);
+        addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
         redraw();
     });
 
