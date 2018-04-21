@@ -16,14 +16,9 @@ var paint = true;
 // var mediumImageHeight = 20;
 var drawingAreaX = 111;
 var drawingAreaY = 11;
-var drawingAreaWidth = 9000;
+var drawingAreaWidth = 2000;
 var drawingAreaHeight = 500;
 var canvasWidth = 700;
-=======
-var drawingAreaWidth = 1450;
-var drawingAreaHeight = 500;
-var canvasWidth = drawingAreaWidth;
->>>>>>> 957761fe5df901198f0a473f38366dd0bb2002ae
 var canvasHeight = drawingAreaHeight;
 var sizeHotspotWidthObject = {
     normal: 18
