@@ -1,7 +1,8 @@
-var colorRed = "#cb3594";
-var colorGreen = "#659b41";
-var colorBlue = "#ffcf33";
+var colorRed = "#ff3232";
+var colorGreen = "#00e164";
+var colorBlue = "#0064e1";
 var curColor = colorRed;
+var curSize = 50;
 var clickX = new Array();
 var clickY = new Array();
 var clickColor = new Array();
@@ -9,16 +10,21 @@ var clickTool = new Array();
 var clickSize = new Array();
 var clickDrag = new Array();
 var paint = false;
-var mediumStartX = 18;
-var mediumStartY = 19;
-var mediumImageWidth = 20;
-var mediumImageHeight = 20;
+// var mediumStartX = 18;
+// var mediumStartY = 19;
+// var mediumImageWidth = 20;
+// var mediumImageHeight = 20;
 var drawingAreaX = 111;
 var drawingAreaY = 11;
-var drawingAreaWidth = 267;
-var drawingAreaHeight = 400;
-var canvasWidth = 500;
-var canvasHeight = 250;
+var drawingAreaWidth = 1000;
+var drawingAreaHeight = 900;
+var canvasWidth = drawingAreaWidth;
+var canvasHeight = drawingAreaHeight;
+var sizeHotspotWidthObject = {
+    normal: 18
+}
+
+var outlineImage = new Image();
 
 /**
  * Calls the redraw function after all neccessary resources are loaded.
@@ -45,6 +51,10 @@ function prepareCanvas()
     if(typeof G_vmlCanvasManager != 'undefined') {
         canvas = G_vmlCanvasManager.initElement(canvas);
     }
+
+    outlineImage.onload = function() { resourceLoaded();
+    };
+    outlineImage.src = "images/bg.gif"
     context = canvas.getContext("2d"); // Grab the 2d canvas context
     // Note: The above code is a workaround for IE 8 and lower. Otherwise we could have used:
     //     context = document.getElementById('canvas').getContext("2d");
@@ -57,20 +67,17 @@ function prepareCanvas()
     {
         var mouseX = e.pageX - this.offsetLeft;
         var mouseY = e.pageY - this.offsetTop;
-
-        if(mouseX > mediumStartX)
-        {
-            if(mouseY > mediumStartY && mouseY < mediumStartY + mediumImageHeight){
-                curColor = colorRed;
-            }else if(mouseY > mediumStartY + mediumImageHeight && mouseY < mediumStartY + mediumImageHeight * 2){
-                    curColor = colorGreen;
-            }else if(mouseY > mediumStartY + mediumImageHeight * 2 && mouseY < mediumStartY + mediumImageHeight * 3){
-                    curColor = colorBlue;
-            }
-        }
-        else if(mouseY > drawingAreaY && mouseY < drawingAreaY + drawingAreaHeight)
-        {
-        }
+        //
+        // if(mouseX > mediumStartX)
+        // {
+        //     if(mouseY > mediumStartY && mouseY < mediumStartY + mediumImageHeight){
+        //         curColor = colorRed;
+        //     }else if(mouseY > mediumStartY + mediumImageHeight && mouseY < mediumStartY + mediumImageHeight * 2){
+        //             curColor = colorGreen;
+        //     }else if(mouseY > mediumStartY + mediumImageHeight * 2 && mouseY < mediumStartY + mediumImageHeight * 3){
+        //             curColor = colorBlue;
+        //     }
+        // }
 
         paint = true;
         addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
@@ -105,11 +112,6 @@ function addClick(x, y, dragging)
     clickX.push(x);
     clickY.push(y);
     clickDrag.push(dragging);
-    if(curTool == "eraser"){
-        clickColor.push("white");
-    }else{
-        clickColor.push(curColor);
-    }
     clickColor.push(curColor);
     clickSize.push(curSize);
     clickDrag.push(dragging);
@@ -140,24 +142,10 @@ function redraw(){
         context.lineJoin = "round";
         context.lineWidth = radius;
         context.stroke();
-        if(curTool == "eraser") {
-            context.globalAlpha = 1;
-        }
-        else {
-            context.globalAlpha = 0.4;
-            context.drawImage(crayonTextureImage, 0,0, canvasWidth, canvasHeight)
-        }
     }
     //context.globalCompositeOperation = "source-over";// To erase instead of draw over with white
     context.restore();
 
-    // Overlay a crayon texture (if the current tool is crayon)
-    if(curTool == "crayon"){
-        context.globalAlpha = 0.4; // No IE support
-        context.drawImage(crayonTextureImage, 0, 0, canvasWidth, canvasHeight);
-    }
-    context.globalAlpha = 1; // No IE support
-
     // Draw the outline image
-    context.drawImage(outlineImage, drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
+    //context.drawImage(drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
 }
