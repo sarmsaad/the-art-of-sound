@@ -26,7 +26,7 @@ function resourceLoaded()
 function prepareCanvas()
 {
     // Create the canvas (Neccessary for IE because it doesn't know what a canvas element is)
-    var canvasDiv = document.getElementById('canvasDiv');
+    var canvasDiv = document.getElementById('canvass');
     canvas = document.createElement('canvas');
     canvas.setAttribute('width', canvasWidth);
     canvas.setAttribute('height', canvasHeight);
@@ -88,19 +88,41 @@ function addClick(x, y, dragging)
 function redraw(){
     context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
 
-    context.strokeStyle = "#df4b26";
-    context.lineJoin = "round";
-    context.lineWidth = 5;
+    // Keep the drawing in the drawing area
+    context.save();
+    context.beginPath();
+    context.rect(drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
+    context.clip();
 
-    for(var i=0; i < clickX.length; i++) {
-        context.beginPath();
+    var radius;
+    var i = 0;
+    for(; i < clickX.length; i++)
+    {
+    	context.beginPath();
         if(clickDrag[i] && i){
             context.moveTo(clickX[i-1], clickY[i-1]);
         }else{
-            context.moveTo(clickX[i]-1, clickY[i]);
+            context.moveTo(clickX[i], clickY[i]);
         }
         context.lineTo(clickX[i], clickY[i]);
         context.closePath();
+
+
+        context.lineJoin = "round";
+        context.lineWidth = radius;
         context.stroke();
+
     }
+    //context.globalCompositeOperation = "source-over";// To erase instead of draw over with white
+    context.restore();
+
+    // Overlay a crayon texture (if the current tool is crayon)
+    if(curTool == "crayon"){
+        context.globalAlpha = 0.4; // No IE support
+        context.drawImage(crayonTextureImage, 0, 0, canvasWidth, canvasHeight);
+    }
+    context.globalAlpha = 1; // No IE support
+
+    // Draw the outline image
+    context.drawImage(outlineImage, drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
 }
