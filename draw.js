@@ -10,19 +10,20 @@ var clickTool = new Array();
 var clickSize = new Array();
 var clickDrag = new Array();
 var paint = false;
-var mediumStartX = 18;
-var mediumStartY = 19;
-var mediumImageWidth = 20;
-var mediumImageHeight = 20;
+// var mediumStartX = 18;
+// var mediumStartY = 19;
+// var mediumImageWidth = 20;
+// var mediumImageHeight = 20;
 var drawingAreaX = 111;
 var drawingAreaY = 11;
-var drawingAreaWidth = 600;
-var drawingAreaHeight = 500;
-var canvasWidth = 500;
-var canvasHeight = 250;
+var drawingAreaWidth = 1000;
+var drawingAreaHeight = 900;
+var canvasWidth = drawingAreaWidth;
+var canvasHeight = drawingAreaHeight;
 var sizeHotspotWidthObject = {
     normal: 18
 }
+
 var outlineImage = new Image();
 
 /**
@@ -66,17 +67,17 @@ function prepareCanvas()
     {
         var mouseX = e.pageX - this.offsetLeft;
         var mouseY = e.pageY - this.offsetTop;
-
-        if(mouseX > mediumStartX)
-        {
-            if(mouseY > mediumStartY && mouseY < mediumStartY + mediumImageHeight){
-                curColor = colorRed;
-            }else if(mouseY > mediumStartY + mediumImageHeight && mouseY < mediumStartY + mediumImageHeight * 2){
-                    curColor = colorGreen;
-            }else if(mouseY > mediumStartY + mediumImageHeight * 2 && mouseY < mediumStartY + mediumImageHeight * 3){
-                    curColor = colorBlue;
-            }
-        }
+        //
+        // if(mouseX > mediumStartX)
+        // {
+        //     if(mouseY > mediumStartY && mouseY < mediumStartY + mediumImageHeight){
+        //         curColor = colorRed;
+        //     }else if(mouseY > mediumStartY + mediumImageHeight && mouseY < mediumStartY + mediumImageHeight * 2){
+        //             curColor = colorGreen;
+        //     }else if(mouseY > mediumStartY + mediumImageHeight * 2 && mouseY < mediumStartY + mediumImageHeight * 3){
+        //             curColor = colorBlue;
+        //     }
+        // }
 
         paint = true;
         addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
@@ -146,5 +147,5 @@ function redraw(){
     context.restore();
 
     // Draw the outline image
-    context.drawImage(outlineImage, drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
+    //context.drawImage(drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
 }
