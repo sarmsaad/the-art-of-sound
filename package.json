@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sarmsaad/the-art-of-sound#readme",
   "dependencies": {
-    "audio-loader": "^1.0.3"
+    "audio-loader": "^1.0.3",
+    "fft": "^0.2.1"
   }
 }
