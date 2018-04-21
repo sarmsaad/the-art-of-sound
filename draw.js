@@ -108,6 +108,7 @@ function addClick(x, y, dragging)
     }else{
         clickColor.push(curColor);
     }
+    clickColor.push(curColor);
     clickSize.push(curSize);
     clickDrag.push(dragging);
 }
@@ -133,12 +134,17 @@ function redraw(){
         }
         context.lineTo(clickX[i], clickY[i]);
         context.closePath();
-
-
+        context.strokeStyle = clickColor[i];
         context.lineJoin = "round";
         context.lineWidth = radius;
         context.stroke();
-
+        if(curTool == "eraser") {
+            context.globalAlpha = 1;
+        }
+        else {
+            context.globalAlpha = 0.4;
+            context.drawImage(crayonTextureImage, 0,0, canvasWidth, canvasHeight)
+        }
     }
     //context.globalCompositeOperation = "source-over";// To erase instead of draw over with white
     context.restore();
