@@ -18,14 +18,17 @@
 
     <link rel='stylesheet' type='text/css' href='style.css'/>
     <script src  = "./js/script.js"></script>
+    <script type="text/javascript" src="draw.js"></script>
    
 
 </head>
 <body>
+
 <div id = "canvass"></div>
-<script type = "text/javascript" src="draw.js"> </script>
+
 <script type="text/javascript">
-    	 drawing.init();
+    $(document).ready(function() {
+        prepareCanvas();});
 </script>
 </body>
 </html>
