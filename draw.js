@@ -18,12 +18,14 @@ var drawingAreaX = 111;
 var drawingAreaY = 11;
 var drawingAreaWidth = 600;
 var drawingAreaHeight = 500;
-var canvasWidth = 500;
-var canvasHeight = 250;
+var canvasWidth = 600;
+var canvasHeight = 500;
 var sizeHotspotWidthObject = {
     normal: 18
 }
 var outlineImage = new Image();
+var curLoadResNum = 0;
+var totalLoadResources = 8;
 
 /**
  * Calls the redraw function after all neccessary resources are loaded.
@@ -51,14 +53,14 @@ function prepareCanvas()
         canvas = G_vmlCanvasManager.initElement(canvas);
     }
 
-    outlineImage.onload = function() { resourceLoaded();
-    };
-    outlineImage.src = "images/bg.gif"
+
     context = canvas.getContext("2d"); // Grab the 2d canvas context
     // Note: The above code is a workaround for IE 8 and lower. Otherwise we could have used:
     //     context = document.getElementById('canvas').getContext("2d");
 
-
+    outlineImage.onload = function() { resourceLoaded();
+    };
+    outlineImage.src = "images/bg.gif"
 
     // Add mouse events
     // ----------------
@@ -146,5 +148,5 @@ function redraw(){
     context.restore();
 
     // Draw the outline image
-    context.drawImage(outlineImage, drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
+    //context.drawImage(outlineImage, drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
 }
