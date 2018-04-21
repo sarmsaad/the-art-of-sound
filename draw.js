@@ -9,6 +9,14 @@ var clickTool = new Array();
 var clickSize = new Array();
 var clickDrag = new Array();
 var paint = false;
+var mediumStartX = 18;
+var mediumStartY = 19;
+var mediumImageWidth = 20;
+var mediumImageHeight = 20;
+var drawingAreaX = 111;
+var drawingAreaX = 11;
+var drawingAreaWidth = 267;
+var drawingAreaHeight = 400;
 
 /**
  * Calls the redraw function after all neccessary resources are loaded.
@@ -47,6 +55,20 @@ function prepareCanvas()
     {
         var mouseX = e.pageX - this.offsetLeft;
         var mouseY = e.pageY - this.offsetTop;
+
+        if(mouseX > mediumStartX)
+        {
+            if(mouseY > mediumStart && mouseY < mediumStartY + mediumImageHeight){
+                curColor = colorRed;
+            }else if(mouseY > mediumStartY + mediumImageHeight && mouseY < mediumStartY + mediumImageHeight * 2){
+                    curColor = colorGreen;
+            }else if(mouseY > mediumStartY + mediumImageHeight * 2 && mouseY < mediumStartY + mediumImageHeight * 3){
+                    curColor = colorBlue;
+            }
+        }
+        else if(mouseY > drawingAreaY && mouseY < drawingAreaY + drawingAreaHeight)
+        {
+        }
 
         paint = true;
         addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
