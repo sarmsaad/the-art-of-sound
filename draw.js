@@ -1,6 +1,6 @@
 var colorRed = "#ff3232";
-var colorGreen = "#659b41";
-var colorBlue = "#ffcf33";
+var colorGreen = "#00e164";
+var colorBlue = "#0064e1";
 var curColor = colorRed;
 var curSize = 50;
 var clickX = new Array();
@@ -23,6 +23,7 @@ var canvasHeight = 250;
 var sizeHotspotWidthObject = {
     normal: 18
 }
+var outlineImage = new Image();
 
 /**
  * Calls the redraw function after all neccessary resources are loaded.
@@ -49,6 +50,10 @@ function prepareCanvas()
     if(typeof G_vmlCanvasManager != 'undefined') {
         canvas = G_vmlCanvasManager.initElement(canvas);
     }
+
+    outlineImage.onload = function() { resourceLoaded();
+    };
+    outlineImage.src = "images/bg.gif"
     context = canvas.getContext("2d"); // Grab the 2d canvas context
     // Note: The above code is a workaround for IE 8 and lower. Otherwise we could have used:
     //     context = document.getElementById('canvas').getContext("2d");
@@ -141,5 +146,5 @@ function redraw(){
     context.restore();
 
     // Draw the outline image
-    context.drawImage(drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
+    context.drawImage(outlineImage, drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
 }
