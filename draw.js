@@ -14,9 +14,11 @@ var mediumStartY = 19;
 var mediumImageWidth = 20;
 var mediumImageHeight = 20;
 var drawingAreaX = 111;
-var drawingAreaX = 11;
+var drawingAreaY = 11;
 var drawingAreaWidth = 267;
 var drawingAreaHeight = 400;
+var canvasWidth = 500;
+var canvasHeight = 250;
 
 /**
  * Calls the redraw function after all neccessary resources are loaded.
@@ -58,7 +60,7 @@ function prepareCanvas()
 
         if(mouseX > mediumStartX)
         {
-            if(mouseY > mediumStart && mouseY < mediumStartY + mediumImageHeight){
+            if(mouseY > mediumStartY && mouseY < mediumStartY + mediumImageHeight){
                 curColor = colorRed;
             }else if(mouseY > mediumStartY + mediumImageHeight && mouseY < mediumStartY + mediumImageHeight * 2){
                     curColor = colorGreen;
