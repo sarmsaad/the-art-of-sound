@@ -12,7 +12,7 @@
       <button v-on:click="stopPitch">Stop</button>
       <div>
         <h3>Color result: {{color}}</h3>
-        <h3>Pitch: {{pitch}}</h3>
+        <h3>Pitch: {{pitch}} Volume: {{y}}</h3>
         
       </div>
     </div>
@@ -44,7 +44,11 @@ export default {
         // console.log(x);
         this.pitch = x;
         this.x = Math.round(this.pitch/500 * 1000);
-        this.y = Math.round(Math.random()*this.pitch);
+        // this.y = Math.round(Math.random()*this.pitch);
+      }, y => {
+        let volume = (y/0.5)*300 
+        this.y = Math.round(volume);
+        console.log(volume);
       })
     };
   },
