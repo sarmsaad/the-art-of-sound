@@ -3,9 +3,11 @@
     <!-- <div id = "canvass" style="border:1px solid #000000;"> -->
       <!-- <canvas id="canvas"></canvas> -->
     <!-- </div> -->
-    <my-canvas style="width: 1000px; height: 300px;" >
+    <div id="canvass" style="center">
+    <my-canvas style="width: 100%; height: 300px;" >
       <pen :x="x" :y="y"></pen>
     </my-canvas>
+    </div>
     <div>
       <button v-on:click="getColor">Say the color</button>
       <button v-on:click="getPitch">Pitch</button>
@@ -23,9 +25,9 @@
 import ColorRecognizer from "../speech/color.js";
 import PitchDetect from "../speech/pitch.js";
 // import CanvasDraw from '../draw.js';
-import MyCanvas from './MyCanvas.vue';
+import MyCanvas from "./MyCanvas.vue";
 // import MyBox from './MyBox.vue';
-import Pen from './Pen.vue';
+import Pen from "./Pen.vue";
 
 export default {
   name: "HelloWorld",
@@ -35,21 +37,24 @@ export default {
   },
   data() {
     return {
-      x:0,
-      y:0,
+      x: 0,
+      y: 0,
       color: "",
       pitch: 0,
       pitching: false,
-      pd: new PitchDetect(x => {
-        // console.log(x);
-        this.pitch = x;
-        this.x = Math.round(this.pitch/500 * 1000);
-        // this.y = Math.round(Math.random()*this.pitch);
-      }, y => {
-        let volume = (y/0.5)*300 
-        this.y = Math.round(volume);
-        console.log(volume);
-      })
+      pd: new PitchDetect(
+        x => {
+          // console.log(x);
+          this.pitch = x;
+          this.x = this.pitch / 350;
+          // this.y = Math.round(Math.random()*this.pitch);
+        },
+        y => {
+          let volume = y / 0.5;
+          this.y = volume;
+          console.log(volume);
+        }
+      )
     };
   },
   methods: {
@@ -69,10 +74,10 @@ export default {
     },
     handleRight: function() {
       console.log(this.x);
-      this.x ++;
+      this.x++;
     }
   },
-  mounted () {
+  mounted() {
     // let cd = new CanvasDraw();
     // cd.prepare();
   }
@@ -95,5 +100,9 @@ li {
 }
 a {
   color: #42b983;
+}
+
+#canvass {
+  border: 1px solid black;
 }
 </style>

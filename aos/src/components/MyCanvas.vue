@@ -34,6 +34,11 @@ export default {
     // Normally you'd use a more flexible resize system.
     this.$refs['my-canvas'].width = this.$refs['my-canvas'].parentElement.clientWidth
     this.$refs['my-canvas'].height = this.$refs['my-canvas'].parentElement.clientHeight
+
+    let ctx = this.provider.context;
+
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   }
 }
 </script>
