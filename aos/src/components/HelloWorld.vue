@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div id="hello">
     <!-- <div id = "canvass" style="border:1px solid #000000;"> -->
       <!-- <canvas id="canvas"></canvas> -->
     <!-- </div> -->
@@ -7,15 +7,15 @@
     <my-canvas style="width: 100%; height: 300px;" >
       <pen :x="x" :y="y"></pen>
     </my-canvas>
-    </div>
+    <h1>The Art of Sound</h1>
     <div>
-      <button v-on:click="getColor">Say the color</button>
       <button v-on:click="getPitch">Pitch</button>
       <button v-on:click="stopPitch">Stop</button>
       <div>
-        <h3>Color result: {{color}}</h3>
+
         <h3>Pitch: {{pitch}} Volume: {{y}}</h3>
-        
+
+
       </div>
     </div>
   </div>
@@ -85,24 +85,48 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1,
-h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+<style >
 
-#canvass {
-  border: 1px solid black;
-}
+  h3 {
+    font-family: "Verdana";
+    font-style: italic;
+    font-size: 14pt;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  a {
+    color: #42b983;
+  }
+  h1 {
+    font-size: 200;
+    font-family: "Verdana";
+    font-weight: bolder;
+  }
+  button {
+    background-color: #957bed; /* bed color */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px 15px 15px 5px;
+    border-radius: 5px;
+  }
+  button:hover{
+    background-color: #766ce2;
+  }
+body{
+    background: #d9a7c7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #fffcdc, #d9a7c7);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #fffcdc, #d9a7c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    height: 100%;
+  }
 </style>
