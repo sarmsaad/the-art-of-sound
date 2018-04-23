@@ -4,7 +4,7 @@
       <!-- <canvas id="canvas"></canvas> -->
     <!-- </div> -->
     <div id="canvass" style="center">
-    <my-canvas style="width: 100%; height: 300px;" >
+    <my-canvas style="width: 100%; height: 400px;" >
       <pen :x="x" :y="y"></pen>
     </my-canvas>
     <h1>The Art of Sound</h1>
@@ -18,6 +18,7 @@
 
       </div>
     </div>
+  </div>
   </div>
 </template>
 
